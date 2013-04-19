@@ -1,0 +1,46 @@
+To start DB:
+python manage.py syncdb
+
+
+To create your app, make sure you’re in the same directory as manage.py and type this command:
+python manage.py startapp polls
+
+Edit the polls/models.py file so it looks like this:
+from django.db import models
+
+class Poll(models.Model):
+    question = models.CharField(max_length=200)
+    pub_date = models.DateTimeField('date published')
+
+class Choice(models.Model):
+    poll = models.ForeignKey(Poll)
+    choice_text = models.CharField(max_length=200)
+    votes = models.IntegerField(default=0)
+
+Each class is a new database, and each field under the class is a field in that database.
+
+To install the App in the db:
+Edit the mysite/settings.py file again, and change the INSTALLED_APPS setting to include the string 'polls'. So it’ll look like this:
+INSTALLED_APPS = (
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'polls',
+)
+Now Django knows to include the polls app. Let’s run another command:
+python manage.py sql polls
+
+python manage.py syncdb
+
+
+
+How to play with the API: python manage.py shell
+
+How to start the development server: python manage.py runserver
+
+
+
+

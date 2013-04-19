@@ -1,0 +1,84 @@
+ssh nimaveiseh@themedf.com
+Make sure you add /usr/local/bin to your PATH in order to use this compiler. This can be done, e.g. by 
+export PATH=$PATH:/usr/local/bin
+brew install gfortran
+sudo enpkg enstaller
+sudo pip-2.6 install SciPy
+sudo pip-2.6 install beautifulsoup4
+
+
+I don't know what's wrong. I've done this probably hundred times and never had an issue with it. For some reason, your SSH key is not recognized. I generated a new one and uploaded it. I also tested logging in with it. It works. Take the attached two files and put them in your .ssh folder. Make sure the id_rsa is set to permissions 600 and the id_rsa.pub to 644. You can discard the keys you have in that folder now. Once done, delete this email including deleting it from your trash.
+
+Your password is your last name.
+
+I hope this will work now. ;)
+
+Password: 3SoQC3Ue, veiseh
+Air-Air:WikiMine nimave$ ls
+WikiMine        manage.py       manage.pyc      sqlite.db
+Air-Air:WikiMine nimave$ cd ..
+Air-Air:Aptana nimave$ ls
+Backups         Pollster        ReadWiki        WikiMine        id_rsa.pub
+LearningsDir    ReadComment     WikiCamp        Workbench       id_rsa.txt
+Air-Air:Aptana nimave$ scp id_rsa nimaveiseh@themedf.com:id_rsa
+nimaveiseh@themedf.com's password: 
+id_rsa: No such file or directory
+Air-Air:Aptana nimave$ ls
+Backups         Pollster        ReadWiki        WikiMine        id_rsa.pub
+LearningsDir    ReadComment     WikiCamp        Workbench       id_rsa.txt
+Air-Air:Aptana nimave$ scp id_rsa.pub nimaveiseh@themedf.com:id_rsa.pub
+nimaveiseh@themedf.com's password: 
+id_rsa.pub                                                                                             100%  405     0.4KB/s   00:00    
+Air-Air:Aptana nimave$ scp id_rsa.txt nimaveiseh@themedf.com:id_rsa
+nimaveiseh@themedf.com's password: 
+id_rsa.txt                                                                                             100% 1766     1.7KB/s   00:00    
+Air-Air:Aptana nimave$ 
+
+
+
+The website files sit in /srv/www/themedf.com and it's written in
+Django.
+
+IMAP settings:
+Server: mail.themedf.com, port 993
+Username: nimaveiseh
+Security: SSL/TLS
+
+Outgoing:
+Server: mail.themedf.com, port 465
+Method: Normal Password
+Security: SSL/TLS
+
+
+http://drupal.org/node/1070130
+Ok, that should work.
+Check the following please using the terminal on your mac:
+
+Make sure you have the generated id_rsa and id_rsa.pub files in your .ssh directory (actually only the id_rsa matters, but let's keep them both in). If you do have them there, continue as follows:
+
+Make sure your .ssh folder in your home directory has the 700 permission on it. If you're not sure how to check, issue chmod 700 .ssh from your home directory. Then try logging in again. If it doesn't work, continue with this:
+
+chmod 700 id_rsa
+chmod 744 id_rsa.pub
+
+Then try again. If it still doesn't work, make sure your .ssh folder is owned by you as a user:
+
+chown -R youruser:youruser .ssh
+
+If none of this helps, then I don't know - it should work. I've set this up on a mac before and it's just like Linux in that sense, so there are not tricks to it.
+
+Let me know how it goes.
+
+Generate public/private key pair using these steps. Stop at the end of the Generating a keypair section: http://drupal.org/node/1070130
+
+Create a directory .ssh in your home directory on themedf server.
+
+Upload your public key (not the private one) to that ssh directory using scp for example. Google scp tutorial if you don't know how to use it. It's easy and there are tons of tutorials. 
+The public key file is the one called id_rsa.pub in your .ssh directory in your home directory on your computer.
+ssh-keygen -t rsa -C "yourname@yourdomain.ext"
+
+
+Change permissions of the .ssh folder on the server to 700 like this: from your home directory, issue: chmod -R 700 .ssh
+
+Change permissions of the id_rsa.pub file to 644 by issuing (from your home directory again): chmod 644 .ssh/id_rsa.pub
+
