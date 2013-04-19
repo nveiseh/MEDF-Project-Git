@@ -1,0 +1,14 @@
+1. Create Project Folder, with initial app inside of the same name
+Do this automatically by Aptana, or from the command line: django-admin.py startproject MEDF
+
+2. Start the server to verify it is working:
+python manage.py runserver
+Check server status, but going through webbrowser on http://127.0.0.1:8000/
+python manage.py runserver 8080
+python manage.py runserver 0.0.0.0:8000
+
+3. Setting up NEW APP 
+Start your first app by running python manage.py startapp [appname].
+
+4. Setting up DATABASE
+If you plan to use a database, edit the DATABASES setting in MEDF/settings.py.
