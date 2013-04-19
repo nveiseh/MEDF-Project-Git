@@ -9,6 +9,7 @@ python manage.py runserver 0.0.0.0:8000
 
 3. Setting up NEW APP 
 Start your first app by running python manage.py startapp [appname].
+This may be already done, but should be redone with each new app
 
 4. Setting up DATABASE
 If you plan to use a database, edit the DATABASES setting in MEDF/settings.py.
